@@ -22,6 +22,7 @@ const SwitchVersion = () => {
   const [isGenerated, setIsGenerate] = useState(false);
   const [regenerate, setRegenerate] = useState(false);
   const resultRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   const handleSelectSubject = (subject) => {
     setSelectedSubject(subject);
@@ -43,6 +44,14 @@ const SwitchVersion = () => {
     scrollToResult();
   };
 
+  const closeOpenDropdown = (e) => {
+    if (open && !dropdownRef.current?.contains(e.target)) {
+      setOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", closeOpenDropdown);
+
   const scrollToResult = () => resultRef.current.scrollIntoView();
 
   return (
@@ -59,7 +68,10 @@ const SwitchVersion = () => {
                 <FaAngleDown />
               </div>
               {open && (
-                <div className="absolute z-20 w-[400px] h-[220px]">
+                <div
+                  ref={dropdownRef}
+                  className="absolute z-20 w-[400px] h-[220px]"
+                >
                   <div className="relative">
                     <div className="absolute top-0">
                       <ul className="flex flex-col text-sm  overflow-y-auto h-[220px] w-[200px] bg-white shadow-xl overflow-x-visible z-50">

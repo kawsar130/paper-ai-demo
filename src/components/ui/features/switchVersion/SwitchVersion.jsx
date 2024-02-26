@@ -1,17 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ResultSections from "../ResultSections/ResultSections";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { GoArrowSwitch } from "react-icons/go";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import { Switch } from "@headlessui/react";
+import subjectData from "@/dummy/subjectData";
 
+// Printing the populated data for demonstration
+subjectData.forEach((subject) => {
+  console.log(subject.title);
+  console.log(subject.items);
+});
 const SwitchVersion = () => {
   const [open, setOpen] = useState(false);
   const [enabled, setEnabled] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [hoveredItem, setHoveredItem] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [paperTitleText, setPaperTitleText] = useState("");
+  const [hoveredItem, setHoveredItem] = useState("");
+  const [isGenerated, setIsGenerate] = useState(false);
+  const [regenerate, setRegenerate] = useState(false);
+  const resultRef = useRef(null);
 
   const handleSelectSubject = (subject) => {
     setSelectedSubject(subject);
@@ -19,47 +29,85 @@ const SwitchVersion = () => {
   };
 
   const toggleSubmenu = (item) => {
-    setHoveredItem(item === hoveredItem ? '' : item);
+    setHoveredItem(item);
   };
+
+  const handleDropdownClick = () => {
+    if (open) setHoveredItem("");
+    setOpen(!open);
+  };
+
+  const generatePaper = () => {
+    if (!isGenerated) setIsGenerate(true);
+    else setRegenerate(!regenerate);
+    scrollToResult();
+  };
+
+  const scrollToResult = () => resultRef.current.scrollIntoView();
 
   return (
     <>
-      <section className="scroll-mt-14 pb-10">
+      <section className="scroll-mt-14 pb-10 select-none">
         <div className="mx-auto mt-16 md:mt-20 px-4 sm:px-6 md:max-w-[52rem] md:px-4">
           <div className="md:flex">
             <div className=" max-w-40 w-full mr-4 relative">
               <div
-                onClick={() => setOpen(!open)}
+                onClick={handleDropdownClick}
                 className="border flex items-center justify-between border-solid border-gray-200 px-3 py-2 text-sm"
               >
-                {selectedSubject || 'Select'}
+                <p className="truncate">{selectedSubject || "Select"}</p>
                 <FaAngleDown />
               </div>
               {open && (
-                <div
-                  className={`absolute top-full bg-white shadow-xl h-[200px] rounded-lg px-3 py-5 w-full`}
-                >
-
-                  <ul className="flex flex-col gap-3 text-sm ">
-                    {/* For each list item, add onMouseEnter and onMouseLeave to toggle visibility */}
-                    <li
-                      className="flex justify-between relative group items-center cursor-pointer"
-                      onMouseEnter={() => toggleSubmenu('math')}
-                      onMouseLeave={() => toggleSubmenu('')}
-                    >
-                      數學 <FaAngleRight />
-                      <ul className={`absolute bg-white border-l border-solid border-gray-400 ${hoveredItem === 'math' ? 'opacity-100' : 'opacity-0'
-                        } -right-[145px] -top-5 shadow-xl h-[200px] rounded-lg px-3 py-5`}>
-                        <li>0101 高等數學</li>
-                        <li>0101 中等數學</li>
-                        <li>0101 低等數學</li>
+                <div className="absolute z-20 w-[400px] h-[220px]">
+                  <div className="relative">
+                    <div className="absolute top-0">
+                      <ul className="flex flex-col text-sm  overflow-y-auto h-[220px] w-[200px] bg-white shadow-xl overflow-x-visible z-50">
+                        {/* For each list item, add onMouseEnter and onMouseLeave to toggle visibility */}
+                        {subjectData.map((subject, index) => (
+                          <li
+                            key={subject.title}
+                            className={`flex justify-between group items-center cursor-pointer py-2 px-3 ${
+                              subject.title === hoveredItem && "bg-gray-200"
+                            }`}
+                            onMouseEnter={() => toggleSubmenu(subject.title)}
+                            onMouseLeave={() => toggleSubmenu(subject.title)}
+                          >
+                            {(index + 1).toString().padStart(2, "0")}{" "}
+                            {subject.title} <FaAngleRight />
+                            {subject.title === hoveredItem && (
+                              <ul
+                                className={`absolute top-0 flex flex-col text-sm  overflow-y-auto h-[220px] w-[200px] bg-white shadow-xl overflow-x-visible z-50 left-[200px] ${
+                                  hoveredItem === subject.title
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                }`}
+                              >
+                                {subject?.items?.map((item) => (
+                                  <li
+                                    onClick={() => handleSelectSubject(item)}
+                                    className={`py-2 px-3 flex justify-between hover:bg-gray-100 ${
+                                      item === selectedSubject && "bg-gray-100"
+                                    }`}
+                                    key={item}
+                                  >
+                                    <p className="truncate w-11/12">{item}</p>{" "}
+                                    {item === selectedSubject && (
+                                      <span className="text-main">
+                                        &#10004;
+                                      </span>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        ))}
                       </ul>
-                    </li>
-
-                  </ul>
+                    </div>
+                  </div>
                 </div>
               )}
-
             </div>
 
             <div className="relative mt-2 md:mt-0 flex-1">
@@ -70,12 +118,26 @@ const SwitchVersion = () => {
               </div>
               <div className="border relative border-solid border-gray-200 py-2  text-sm">
                 <input
+                  value={paperTitleText}
+                  onChange={(event) => {
+                    setPaperTitleText(event.target.value);
+                  }}
                   placeholder="Please enter the complete paper title"
                   type="text"
                   className="w-full outline-0 px-3 "
+                  maxLength={50}
                 />
+                <div className="absolute top-1/2 -translate-y-1/2 right-14">
+                  {/* Button for clearing Paper Title Text */}
+                  <button
+                    onClick={() => setPaperTitleText("")}
+                    className="bg-gray-300 text-white rounded-full text-xs w-4 text-center hover:bg-gray-500 transition-all duration-500"
+                  >
+                    &#10006;
+                  </button>
+                </div>
                 <div className="absolute top-1/2 right-5 -translate-y-1/2 text-xs">
-                  5/50
+                  {paperTitleText.length}/50
                 </div>
               </div>
             </div>
@@ -94,7 +156,13 @@ const SwitchVersion = () => {
           >
             <div className="">
               <label htmlFor="radio1">
-                <input type="radio" id="radio1" value="1" name="version" />
+                <input
+                  type="radio"
+                  id="radio1"
+                  value="1"
+                  name="version"
+                  defaultChecked
+                />
                 <span className="inline-block ml-3">专科/本科(约1万字)</span>
               </label>
             </div>
@@ -130,9 +198,14 @@ const SwitchVersion = () => {
           {/* Button for generating outline */}
           <div className="mt-12 mx-auto relative text-center">
             <button
-              className="bg-main rounded-full text-white px-20 py-4"
+              onClick={generatePaper}
+              className={`bg-main transition-all duration-500 rounded-full text-white px-20 py-4 ${
+                selectedSubject && paperTitleText
+                  ? "bg-main"
+                  : "bg-main-light cursor-not-allowed"
+              }`}
               type="button"
-              disabled
+              disabled={!(selectedSubject && paperTitleText)}
             >
               生成大纲
             </button>
@@ -181,7 +254,14 @@ const SwitchVersion = () => {
       </section>
 
       {/* Result sections */}
-      <ResultSections />
+      <div ref={resultRef}>
+        <ResultSections
+          selectedSubject={selectedSubject}
+          paperTitleText={paperTitleText}
+          isGenerated={isGenerated}
+          regenerate={regenerate}
+        />
+      </div>
     </>
   );
 };

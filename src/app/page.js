@@ -6,7 +6,7 @@ import ScanCode from "@/components/ui/features/scanCode/ScanCode";
 import SwitchVersion from "@/components/ui/features/switchVersion/SwitchVersion";
 import ViewHistoricalOrder from "@/components/ui/features/viewHistoricalOrder/ViewHistoricalOrder";
 import FixedBottomText from "@/components/ui/fixedBottomText/FixedBottomText";
-import FixedTexttop from "@/components/ui/fixedTextTop/fixedTexttop";
+import FixedTexttop from "@/components/ui/fixedTextTop/FixedTexttop";
 import Image from "next/image";
 
 export default function Home() {

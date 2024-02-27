@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ResultSections from "../ResultSections/ResultSections";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { GoArrowSwitch } from "react-icons/go";
@@ -44,14 +44,21 @@ const SwitchVersion = () => {
     scrollToResult();
   };
 
-  const closeOpenDropdown = (e) => {
-    if (open && !dropdownRef.current?.contains(e.target)) {
-      setOpen(false);
-    }
-  };
+  // For closing opened dropdown when clicking outside
+  useEffect(() => {
+    const closeOpenedDropdown = (e) => {
+      if (open && !dropdownRef.current?.contains(e.target)) {
+        setOpen(false);
+      }
+    };
 
-  document.addEventListener("mousedown", closeOpenDropdown);
+    document.addEventListener("mousedown", closeOpenedDropdown);
+    return () => {
+      document.removeEventListener("mousedown", closeOpenedDropdown);
+    };
+  }, [open]);
 
+  // Scrolling to result after Generating paper
   const scrollToResult = () => resultRef.current.scrollIntoView();
 
   return (

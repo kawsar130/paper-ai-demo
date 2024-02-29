@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const ArticleBody = () => {
+const FreePaperGenerator = () => {
   return (
     <div className="md:p-8 flex min-h-screen bg-gray-200">
       <div className="flex-1">
@@ -81,4 +81,4 @@ const ArticleBody = () => {
   );
 };
 
-export default ArticleBody;
+export default FreePaperGenerator;

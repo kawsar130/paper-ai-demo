@@ -1,3 +1,4 @@
+import footerLinksData from "@/dummy/footerLinksData";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -14,60 +15,17 @@ const Footer = () => {
               官方博客{" "}
             </h3>
             <ul role="list" className="mt-6 space-y-4">
-              <li>
-                <Link
-                  href="/article/306"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  ai写作助手好用吗？gpt人工智能写论文
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/305"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  ai论文助手免费版（ai智能论文助手）
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/304"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  AI智能论文助手好用吗？chat ai写作免费
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/303"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  免费人工智能写作（人工智能写作平台）
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/302"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  ai如何免费写文？人工智能写文章软件
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/301"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  论文的写作纲要有哪些？一篇正规论文范文
-                </Link>
-              </li>
+              {footerLinksData.slice(0, 6).map((link) => (
+                <li key={link.id}>
+                  <Link
+                    href={`/article/${link.id}`}
+                    target="_blank"
+                    className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           {/* Two */}
@@ -77,60 +35,17 @@ const Footer = () => {
               官方博客{" "}
             </h3>
             <ul role="list" className="mt-6 space-y-4">
-              <li>
-                <Link
-                  href="/article/300"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  论文初稿可以只写大概内容吗？论文初稿模板范文
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/299"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  3天能写完毕业论文初稿吗？论文初稿可以只写大概内容吗
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/298"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  哪里可以免费写论文？论文网免费论文
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/297"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  公文写作软件怎么用？免费文献检索网站有哪些
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/296"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  靠谱的ai论文写作（写畅狗ai论文写作可靠吗）
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/article/295"
-                  target="_blank"
-                  className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                >
-                  ai论文写作靠谱么？好用的ai论文写作工具
-                </Link>
-              </li>
+              {footerLinksData.slice(6, 12).map((link) => (
+                <li key={link.id}>
+                  <Link
+                    href={`/article/${link.id}`}
+                    target="_blank"
+                    className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           {/* three */}

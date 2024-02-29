@@ -16,7 +16,7 @@ const Footer = () => {
             <ul role="list" className="mt-6 space-y-4">
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/306.html"
+                  href="/article/306"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -25,7 +25,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/305.html"
+                  href="/article/305"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -34,7 +34,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/304.html"
+                  href="/article/304"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -43,7 +43,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/303.html"
+                  href="/article/303"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -52,7 +52,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/302.html"
+                  href="/article/302"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -61,7 +61,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/301.html"
+                  href="/article/301"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -79,7 +79,7 @@ const Footer = () => {
             <ul role="list" className="mt-6 space-y-4">
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/300.html"
+                  href="/article/300"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -88,7 +88,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/299.html"
+                  href="/article/299"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -97,7 +97,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/298.html"
+                  href="/article/298"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -106,7 +106,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/297.html"
+                  href="/article/297"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -115,7 +115,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/296.html"
+                  href="/article/296"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -124,7 +124,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/295.html"
+                  href="/article/295"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -205,7 +205,7 @@ const Footer = () => {
             <ul role="list" className="mt-6 space-y-4">
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/faq"
+                  href="/article/faq"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
@@ -214,7 +214,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://www.aipaperpass.com/article/intro"
+                  href="/article/intro"
                   target="_blank"
                   className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                 >
